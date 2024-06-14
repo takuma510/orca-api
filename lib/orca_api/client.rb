@@ -321,7 +321,6 @@ module OrcaApi #:nodoc:
       @timeout.each do |key, value|
         http.__send__ "#{key}_timeout=", value
       end
-      http.content_type = 'application/json'
 
       http
     end
@@ -349,6 +348,7 @@ module OrcaApi #:nodoc:
 
       if body
         req.body = body.to_json
+        req.content_type = 'application/json'
       end
 
       req
