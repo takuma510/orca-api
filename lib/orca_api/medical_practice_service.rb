@@ -867,6 +867,9 @@ module OrcaApi
       if params["Invoice_Number"]
         body["medicalv3req3"]["Patient_Mode"] = "Modify"
       end
+      if body['medicalv3req3']['Cd_Information'].nil?
+        body['medicalv3req3'].delete('Cd_Information')
+      end
       Response3Result.new(
         orca_api.call("/api21/medicalmodv33", body: body), ignore_medical_warnings(params)
       )
